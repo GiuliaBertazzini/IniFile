@@ -45,6 +45,10 @@ public:
 
     void printSections();
 
+    void checkIsOpen();
+
+    void end();
+
     void printParameters(string section);
 
     void printValue(string section, string parameter);

@@ -142,3 +142,14 @@ bool IniFileManager::findParameter(string section, string parameter) {
     return found;
 
 }
+
+void IniFileManager::checkIsOpen() {
+    if(!newProject.is_open())
+        std::cout<<"The file doesn't exist"<<std::endl;
+
+}
+
+void IniFileManager::end() {
+    this->newProject.close();
+}
+
