@@ -39,11 +39,19 @@ public:
 
     void addParameter(string section, string parameterName);
 
+    bool findSection(string section);
+
+    bool findParameter(string section, string parameter);
+
     void printSections();
 
     void printParameters(string section);
 
     void printValue(string section, string parameter);
+
+    void printAll();
+
+    void addComment(string section, string commentText, bool inSection);
 
 private:
     string fileName;

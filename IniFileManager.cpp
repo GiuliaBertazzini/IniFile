@@ -92,3 +92,53 @@ void IniFileManager::printValue(string section, string parameter) {
     std::cout<< parameter << "value: " <<file[section][parameter];
 }
 
+void IniFileManager::printAll() {
+    for(auto &it:file){
+        if (it.first == "Comments")
+            for(auto &secondIt: file["Comments"])
+                std::cout << secondIt.second <<std::endl;
+        else {
+            std::cout<< "[" << it.first << "]" <<std::endl;
+            for (auto &secondIt:file[it.first]){
+                int numComment=0;
+                bool commentFound=false;
+                while(numComment<maxComment && !commentFound){
+                    if(secondIt.first == to_string(numComment)){
+                        commentFound=true;
+                        std::cout<< secondIt.second << std::endl;
+                    } else
+                        numComment++;
+                }
+                if(!commentFound)
+                    std::cout<< secondIt.first << "=" <<secondIt.second <<std::endl;
+            }
+        }
+    }
+}
+
+void IniFileManager::addComment(string section, string commentText, bool inSection) {
+    string parameter;
+    currentComment += 1;
+    parameter= to_string(currentComment);
+    if(inSection)
+        file[section][parameter]= ";" + commentText;
+    else
+        file["Comments"][parameter]= ";" + commentText;
+}
+
+bool IniFileManager::findSection(string section) {
+    bool found=false;
+    auto it =file.find(section);
+    if (it!=file.end())
+        found=true;
+    return found;
+}
+
+bool IniFileManager::findParameter(string section, string parameter) {
+    bool found=false;
+    auto it = file[section].find(parameter);
+    if(it!=file[section].end())
+        found=true;
+    return found;
+
+}
