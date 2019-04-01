@@ -57,6 +57,8 @@ public:
 
     void addComment(string section, string commentText, bool inSection);
 
+    void reset();
+
 private:
     string fileName;
     map<string, map<string,string>> file;

@@ -153,3 +153,11 @@ void IniFileManager::end() {
     this->newProject.close();
 }
 
+void IniFileManager::reset() {
+    std::cout<<"Do you really want to delete everything? [Y/N]"<<std::endl;
+    string input;
+    cin >> input;
+    if(input=="Y")
+        file.clear();
+}
+
