@@ -161,3 +161,9 @@ void IniFileManager::reset() {
         file.clear();
 }
 
+int IniFileManager::countParameters(string section) {
+    int count=0;
+    for(auto &it:file[section])
+        count++;
+    return count;
+}

@@ -59,6 +59,8 @@ public:
 
     void reset();
 
+    int countParameters(string section);
+
 private:
     string fileName;
     map<string, map<string,string>> file;
