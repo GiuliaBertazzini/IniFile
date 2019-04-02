@@ -30,7 +30,7 @@ string IniFileManager::getValue(string section, string parameter) {
 
 
 void IniFileManager::setStringValue(string section, string parameter, string newValue) {
-    file[section][parameter]=newValue;   //non sono sicura
+    file[section][parameter]=newValue;
 }
 
 void IniFileManager::setIntValue(string section, string parameter, int newValue) {
@@ -145,7 +145,7 @@ bool IniFileManager::findParameter(string section, string parameter) {
 
 void IniFileManager::checkIsOpen() {
     if(!newProject.is_open())
-        std::cout<<"The file doesn't exist"<<std::endl;
+        std::cout<<""<<std::endl;
 
 }
 
@@ -156,7 +156,7 @@ void IniFileManager::end() {
 void IniFileManager::reset() {
     std::cout<<"Do you really want to delete everything? [Y/N]"<<std::endl;
     string input;
-    cin >> input;
+    std::cin >> input;
     if(input=="Y")
         file.clear();
 }
@@ -167,3 +167,14 @@ int IniFileManager::countParameters(string section) {
         count++;
     return count;
 }
+
+void IniFileManager::modify(string section, string parameter, string newValue) {
+    std::cout<<"ATTENTION: parameter" <<parameter<< "has already a value; do you want to replace it? Press Y to continue" <<std::endl;
+    string input;
+    std::cin>> input;
+    if(input=="Y")
+        file[section][parameter]=newValue;
+    else
+        std::cout<<"Parameter is not been replaced"<<std::endl;
+}
+

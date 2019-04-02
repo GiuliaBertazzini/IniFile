@@ -61,6 +61,8 @@ public:
 
     int countParameters(string section);
 
+    void modify(string section, string parameter, string newValue);
+
 private:
     string fileName;
     map<string, map<string,string>> file;
