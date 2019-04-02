@@ -30,7 +30,11 @@ string IniFileManager::getValue(string section, string parameter) {
 
 
 void IniFileManager::setStringValue(string section, string parameter, string newValue) {
-    file[section][parameter]=newValue;
+    auto it= file[section].find(parameter);
+    if(it==file[section].end())
+        file[section][parameter]=newValue;
+    else
+        modify(section,parameter,newValue);
 }
 
 void IniFileManager::setIntValue(string section, string parameter, int newValue) {
