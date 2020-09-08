@@ -59,7 +59,7 @@ void IniFileManager::removeSection(string section) {
     if(it!=file.end())
         file.erase(section);
     else
-        std::cout<<"Error: section not found";
+        throw std::runtime_error("Section doesn't exist");
 }
 
 void IniFileManager::addSection(string sectionName) {
@@ -71,7 +71,7 @@ void IniFileManager::removeParameter(string section, string parameter) {
     if(it!=file[section].end())
         file[section].erase(parameter);
     else
-        std::cout<<"Error: parameter not found";
+        throw sdt::runtime_error("Parameter doesn't exist");
 }
 
 void IniFileManager::addParameter(string section, string parameterName) {
@@ -147,9 +147,9 @@ bool IniFileManager::findParameter(string section, string parameter) {
 
 }
 
-void IniFileManager::checkIsOpen() {
+void IniFileManager::checkIsOpen() throw(std::runtime_error) {
     if(!newProject.is_open())
-        std::cout<<""<<std::endl;
+        throw std::rtime_error("file doesn't exist");
 
 }
 
