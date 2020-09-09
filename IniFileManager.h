@@ -63,6 +63,8 @@ public:
 
     void modify(string section, string parameter, string newValue);
 
+    void putToNull(string section, string parameter);
+
 private:
     string fileName;
     map<string, map<string,string>> file;

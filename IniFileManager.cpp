@@ -184,3 +184,6 @@ void IniFileManager::modify(string section, string parameter, string newValue) {
         std::cout<<"Parameter is not been replaced"<<std::endl;
 }
 
+void IniFileManager::putToNull(string section, string parameter){
+    file[section][parameter] = "null";
+}
