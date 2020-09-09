@@ -45,7 +45,7 @@ public:
 
     void printSections();
 
-    void checkIsOpen() throw(std::runtime_error);
+    void checkIsOpen() throw (std::runtime_error);
 
     void end();
 

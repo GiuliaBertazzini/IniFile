@@ -174,7 +174,7 @@ int IniFileManager::countParameters(string section) {
 }
 
 void IniFileManager::modify(string section, string parameter, string newValue) {
-    std::cout<<"ATTENTION: parameter " <<parameter<< "has already a value do you want to replace it? Press Y to continue" <<std::endl;
+    std::cout<<"ATTENTION: parameter " <<parameter<< "has already a value. Do you want to replace it? Press Y if you want" <<std::endl;
     string input;
     std::cin>> input;
     if(input=="Y")
