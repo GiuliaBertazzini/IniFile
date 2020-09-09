@@ -5,6 +5,8 @@
 #include <iostream>
 #include "IniFileManager.h"
 
+using namespace std;
+
 IniFileManager::IniFileManager(string fileName, int maxComment) {
     this->fileName= fileName;
     this->newProject.open(fileName);
@@ -71,7 +73,7 @@ void IniFileManager::removeParameter(string section, string parameter) {
     if(it!=file[section].end())
         file[section].erase(parameter);
     else
-        throw sdt::runtime_error("Parameter doesn't exist");
+        throw std::runtime_error("Parameter doesn't exist");
 }
 
 void IniFileManager::addParameter(string section, string parameterName) {
@@ -149,7 +151,7 @@ bool IniFileManager::findParameter(string section, string parameter) {
 
 void IniFileManager::checkIsOpen() throw(std::runtime_error) {
     if(!newProject.is_open())
-        throw std::rtime_error("file doesn't exist");
+        throw std::runtime_error("file doesn't exist");
 
 }
 
