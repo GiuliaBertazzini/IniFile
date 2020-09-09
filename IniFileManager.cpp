@@ -5,7 +5,6 @@
 #include <iostream>
 #include "IniFileManager.h"
 
-using namespace std;
 
 IniFileManager::IniFileManager(string fileName, int maxComment) {
     this->fileName= fileName;
@@ -40,7 +39,7 @@ void IniFileManager::setStringValue(string section, string parameter, string new
 }
 
 void IniFileManager::setIntValue(string section, string parameter, int newValue) {
-    string value= to_string(newValue);
+    string value = to_string(newValue);
     setStringValue(section,parameter,value);
 }
 
@@ -149,7 +148,7 @@ bool IniFileManager::findParameter(string section, string parameter) {
 
 }
 
-void IniFileManager::checkIsOpen() throw(std::runtime_error) {
+void IniFileManager::checkIsOpen() throw (std::runtime_error) {
     if(!newProject.is_open())
         throw std::runtime_error("file doesn't exist");
 
@@ -175,11 +174,11 @@ int IniFileManager::countParameters(string section) {
 }
 
 void IniFileManager::modify(string section, string parameter, string newValue) {
-    std::cout<<"ATTENTION: parameter" <<parameter<< "has already a value; do you want to replace it? Press Y to continue" <<std::endl;
+    std::cout<<"ATTENTION: parameter " <<parameter<< "has already a value do you want to replace it? Press Y to continue" <<std::endl;
     string input;
     std::cin>> input;
     if(input=="Y")
-        file[section][parameter]=newValue;
+    file[section][parameter]=newValue;
     else
         std::cout<<"Parameter is not been replaced"<<std::endl;
 }
