@@ -25,11 +25,11 @@ public:
 
     void setStringValue(string section, string parameter, string newValue);
 
-    void setIntValue(string section, string parameter, int newValue);
+    void setValue(string section, string parameter, int newValue);
 
-    void setFloatValue(string section, string parameter, float newValue);
+    void setValue(string section, string parameter, double newValue);
 
-    void setBoolValue (string section, string parameter, bool newValue);
+    void setValue(string section, string parameter, bool newValue);
 
     void removeSection(string section);
 

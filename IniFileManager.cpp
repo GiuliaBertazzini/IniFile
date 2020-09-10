@@ -31,24 +31,24 @@ string IniFileManager::getValue(string section, string parameter) {
 
 
 void IniFileManager::setStringValue(string section, string parameter, string newValue) {
-    auto it= file[section].find(parameter);
+    auto it = file[section].find(parameter);
     if(it==file[section].end())
         file[section][parameter]=newValue;
     else
         modify(section,parameter,newValue);
 }
 
-void IniFileManager::setIntValue(string section, string parameter, int newValue) {
+void IniFileManager::setValue(string section, string parameter, int newValue) {
     string value = to_string(newValue);
     setStringValue(section,parameter,value);
 }
 
-void IniFileManager::setFloatValue(string section, string parameter, float newValue) {
+void IniFileManager::setValue(string section, string parameter, double newValue) {
     string value=to_string(newValue);
     setStringValue(section,parameter,value);
 }
 
-void IniFileManager::setBoolValue(string section, string parameter, bool newValue) {
+void IniFileManager::setValue(string section, string parameter, bool newValue) {
     if(newValue)
         file[section][parameter]="true";
     else
@@ -174,11 +174,13 @@ int IniFileManager::countParameters(string section) {
 }
 
 void IniFileManager::modify(string section, string parameter, string newValue) {
-    std::cout<<"ATTENTION: parameter " <<parameter<< "has already a value. Do you want to replace it? Press Y if you want" <<std::endl;
+    std::cout<<"ATTENTION: parameter " <<parameter<< "has already a value. Do you want to replace it? Press s if you want" <<std::endl;
     string input;
     std::cin>> input;
-    if(input=="Y")
-    file[section][parameter]=newValue;
+    if(input=="s") {
+        file[section][parameter] = newValue;
+        std::cout<<"parametro sostituito";
+    }
     else
         std::cout<<"Parameter is not been replaced"<<std::endl;
 }
