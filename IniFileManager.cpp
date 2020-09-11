@@ -17,6 +17,10 @@ IniFileManager::~IniFileManager(){
     this->newProject.close();
 }
 
+map<string, map<string, string>> IniFileManager::getFile(){
+    return file;
+}
+
 string IniFileManager::getFileName() {
     return fileName;
 }
@@ -79,47 +83,8 @@ void IniFileManager::addParameter(string section, string parameterName) {
     file[section][parameterName];
 }
 
-void IniFileManager::printSections() {
-    std::cout<<"File Sections: "<<std::endl;
-    for (auto &it: file)
-        std::cout<<it.first <<std::endl;
 
-}
 
-void IniFileManager::printParameters(string section) {
-    std::cout<<"Section Parameters: "<<std::endl;
-    for(auto &it:file[section])
-        std::cout<<it.first <<std::endl;
-
-}
-
-void IniFileManager::printValue(string section, string parameter) {
-    std::cout<< parameter << "value: " <<file[section][parameter];
-}
-
-void IniFileManager::printAll() {
-    for(auto &it:file){
-        if (it.first == "Comments")
-            for(auto &secondIt: file["Comments"])
-                std::cout << secondIt.second <<std::endl;
-        else {
-            std::cout<< "[" << it.first << "]" <<std::endl;
-            for (auto &secondIt:file[it.first]){
-                int numComment=0;
-                bool commentFound=false;
-                while(numComment<maxComment && !commentFound){
-                    if(secondIt.first == to_string(numComment)){
-                        commentFound=true;
-                        std::cout<< secondIt.second << std::endl;
-                    } else
-                        numComment++;
-                }
-                if(!commentFound)
-                    std::cout<< secondIt.first << "=" <<secondIt.second <<std::endl;
-            }
-        }
-    }
-}
 
 void IniFileManager::addComment(string section, string commentText, bool inSection) {
     string parameter;
@@ -174,17 +139,19 @@ int IniFileManager::countParameters(string section) {
 }
 
 void IniFileManager::modify(string section, string parameter, string newValue) {
-    std::cout<<"ATTENTION: parameter " <<parameter<< "has already a value. Do you want to replace it? Press s if you want" <<std::endl;
+    std::cout<<"ATTENTION: parameter " <<parameter<< " has already a value. Do you want to replace it? Press s if you want" <<std::endl;
     string input;
     std::cin>> input;
-    if(input=="s") {
+    if(input=="s")
         file[section][parameter] = newValue;
-        std::cout<<"parametro sostituito";
-    }
     else
         std::cout<<"Parameter is not been replaced"<<std::endl;
 }
 
 void IniFileManager::putToNull(string section, string parameter){
     file[section][parameter] = "null";
+}
+
+int IniFileManager::getMaxComment(){
+    return maxComment;
 }

@@ -65,6 +65,11 @@ public:
 
     void putToNull(string section, string parameter);
 
+    map<string, map<string, string>> getFile();
+
+    int getMaxComment();
+
+
 private:
     string fileName;
     map<string, map<string,string>> file;
