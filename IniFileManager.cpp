@@ -157,15 +157,18 @@ int IniFileManager::getMaxComment(){
 }
 
 void IniFileManager::load(const std::string& fileName){
-    file_text.clear();
+    file_text.clear();  //clear existing file data
+    //load file
     string line;
     ifstream file;
     file.open(fileName);
     if(!file.is_open()) {
         std::cout << "Unvalid path" << std::endl;
     }
+    //read file line by line
     while (!file.eof()) {
         getline(file, line);
+        //write to file string
         file_text += line + "\n";
         std::cout << "Loaded" << std::endl;
     }
