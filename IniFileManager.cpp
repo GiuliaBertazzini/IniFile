@@ -155,3 +155,36 @@ void IniFileManager::putToNull(string section, string parameter){
 int IniFileManager::getMaxComment(){
     return maxComment;
 }
+
+void IniFileManager::load(const std::string& fileName){
+    file_text.clear();
+    string line;
+    ifstream file;
+    file.open(fileName);
+    if(!file.is_open()) {
+        std::cout << "Unvalid path" << std::endl;
+    }
+    while (!file.eof()) {
+        getline(file, line);
+        file_text += line + "\n";
+        std::cout << "Loaded" << std::endl;
+    }
+    file.close();
+
+}
+
+void IniFileManager::save(const std::string& fileName){
+    ofstream file (fileName);
+    if (file.is_open()){
+        file << file_text;
+        std::cout << "Saved" <<std::endl;
+        file.close();
+    }
+    else {
+        std::cout << "Error" <<std::endl;
+    }
+}
+
+string IniFileManager::getFileText() {
+    return file_text;
+}

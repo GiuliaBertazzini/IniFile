@@ -25,14 +25,17 @@ int main (){
     file.addParameter("Terza Sezione", "Parametro 1");
     file.addComment("Terza Sezione", "secondo commento", false);
 
-    p.printSections();
-    p.printParameters("Prima Sezione");
-    p.printValue("Prima Sezione", "Parametro 1");
+    //p.printSections();
+    //p.printParameters("Prima Sezione");
+    //p.printValue("Prima Sezione", "Parametro 1");
+    //p.printAll();
+
+    //int numberOfParameters = file.countParameters("Prima Sezione");
+    //std::cout<< "Numero parametri della prima sezione: " << numberOfParameters << std::endl;
+
+    file.save("File.ini");
+    file.load("File.ini");
     p.printAll();
-
-    int numberOfParameters = file.countParameters("Prima Sezione");
-    std::cout<< "Numero parametri della prima sezione: " << numberOfParameters << std::endl;
-
     file.reset();
 
     file.end();

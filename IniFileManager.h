@@ -69,6 +69,12 @@ public:
 
     int getMaxComment();
 
+    void load(const std::string& fileName);
+
+    void save(const std::string& fileName);
+
+    string getFileText();
+
 
 private:
     string fileName;
@@ -76,6 +82,7 @@ private:
     int currentComment;
     int maxComment;
     fstream newProject;
+    string file_text;
 };
 
 
