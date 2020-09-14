@@ -21,20 +21,20 @@ ASSERT_EQ(file.getValue("Sezione 1", "Parametro 1"), "valore 1");
 
 TEST(iniFileManagerTest, IntGetterSetterTest) {
 IniFileManager file("Prova.ini");
-file.setIntValue("Sezione 1", "Parametro 2", 5);
+file.setValue("Sezione 1", "Parametro 2", 5);
 ASSERT_EQ(stoi(file.getValue("Sezione 1", "Parametro 2")), 5);
 }
 
 TEST(iniFileManagerTest, FloatGetterSetterTest) {
 IniFileManager file("Prova.ini");
-file.setFloatValue("Sezione 2", "Parametro 1", 5.98);
+file.setValue("Sezione 2", "Parametro 1", 5.98);
 ASSERT_TRUE(abs(stof(file.getValue("Sezione 2", "Parametro 1")) - 5.98) < 0.0001);
 }
 
 
 TEST(iniFileManagerTest, BoolGetterSetterTest) {
 IniFileManager file("Prova.ini");
-file.setBoolValue("Sezione 3", "Parametro 1", false);
+file.setValue("Sezione 3", "Parametro 1", false);
 ASSERT_EQ(file.getValue("Sezione 3", "Parametro 1"), "false");
 }
 
@@ -47,7 +47,7 @@ ASSERT_EQ(file.getValue("Sezione 4", "Parametro 6"), "null");
 TEST(iniFileManagerTest, NumParametersTest) {
 IniFileManager file("Prova.ini");
 file.setStringValue("Sezione 4", "Parametro 6", "Valore stringa");
-file.setIntValue("Sezione 4", "Parametro 8", 3);
+file.setValue("Sezione 4", "Parametro 8", 3);
 ASSERT_EQ(file.countParameters("Sezione 4"), 2);
 }
 
@@ -89,4 +89,16 @@ TEST(iniFileManagerException, IsOpenTest) {
 IniFileManager file("Prova.ini");
 file.end();
 EXPECT_THROW(file.checkIsOpen(), std::runtime_error);
+}
+
+TEST(iniFileManagerException, LoadTest) {
+    IniFileManager file("Prova.ini");
+    file.load("../IniFileManager.cpp");
+    EXPECT_THROW(file.checkIsOpen(), std::runtime_error);
+}
+
+TEST(iniFileManagerException, SaveTest) {
+    IniFileManager file("Prova.ini");
+    file.save("../IniFileManager.cpp");
+    EXPECT_THROW(file.checkIsOpen(), std::runtime_error);
 }
