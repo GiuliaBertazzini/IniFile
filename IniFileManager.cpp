@@ -113,7 +113,7 @@ bool IniFileManager::findParameter(string section, string parameter) {
 
 }
 
-void IniFileManager::checkIsOpen() throw () {
+void IniFileManager::checkIsOpen()  {
     if(!newProject.is_open())
         throw std::runtime_error("file doesn't exist");
 
