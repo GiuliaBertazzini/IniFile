@@ -45,7 +45,7 @@ public:
 
     void printSections();
 
-    void checkIsOpen() throw (std::runtime_error);
+    void checkIsOpen() throw ();
 
     void end();
 
@@ -69,9 +69,9 @@ public:
 
     int getMaxComment();
 
-    void load(const std::string& fileName);
+    void load(string filePath);
 
-    void save(const std::string& fileName);
+    void save(string filePath);
 
     string getFileText();
 

@@ -113,7 +113,7 @@ bool IniFileManager::findParameter(string section, string parameter) {
 
 }
 
-void IniFileManager::checkIsOpen() throw (std::runtime_error) {
+void IniFileManager::checkIsOpen() throw () {
     if(!newProject.is_open())
         throw std::runtime_error("file doesn't exist");
 
@@ -156,35 +156,34 @@ int IniFileManager::getMaxComment(){
     return maxComment;
 }
 
-void IniFileManager::load(const std::string& fileName){
-    file_text.clear();  //clear existing file data
+void IniFileManager::load(string filePath){
+    file_text.clear();
     //load file
     string line;
-    ifstream file;
-    file.open(fileName);
-    if(!file.is_open()) {
-        std::cout << "Unvalid path" << std::endl;
+    ifstream file(filePath);
+    if(file.is_open()) {
+        while(getline(file,line)){
+            std::cout<<line<<"\n"<<std::endl;
+            //write to file string
+            file_text += line + "\n";
+        }
+        file.close();
     }
-    //read file line by line
-    while (!file.eof()) {
-        getline(file, line);
-        //write to file string
-        file_text += line + "\n";
-        std::cout << "Loaded" << std::endl;
+
+    else {
+        throw std::runtime_error("Unable to open file");
     }
-    file.close();
 
 }
 
-void IniFileManager::save(const std::string& fileName){
-    ofstream file (fileName);
+void IniFileManager::save(string filePath){
+    ofstream file (filePath);
     if (file.is_open()){
         file << file_text;
-        std::cout << "Saved" <<std::endl;
         file.close();
     }
     else {
-        std::cout << "Error" <<std::endl;
+        throw std::runtime_error("Error");
     }
 }
 

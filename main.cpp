@@ -33,8 +33,6 @@ int main (){
     int numberOfParameters = file.countParameters("Prima Sezione");
     std::cout<< "Numero parametri della prima sezione: " << numberOfParameters << std::endl;
 
-    file.save("File.ini");
-    file.load("File.ini");
     p.printAll();
     file.reset();
 
