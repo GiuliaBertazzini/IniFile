@@ -45,7 +45,7 @@ public:
 
     void printSections();
 
-    void checkIsOpen() throw ();
+    void checkIsOpen();
 
     void end();
 
